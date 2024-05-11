@@ -12,7 +12,7 @@ let calculations = [
     numOne: 2,
     numTwo: 5,
     operator: "x",
-    result: 3
+    result: 10
   }
 ]
 
@@ -49,7 +49,47 @@ app.post('/calculations', (req, res) => {
 
   let calc = req.body
 
-  calculations.push(calc)
+
+  if (calc.operator === "+") {
+    calc.result = Number(calc.numOne) + Number(calc.numTwo)
+    calculations.push(calc)
+
+  }
+
+  else if (calc.operator === "-") {
+    calc.result = Number(calc.numOne) - Number(calc.numTwo)
+    calculations.push(calc)
+
+  }
+
+  else if (calc.operator === "*") {
+    calc.result = Number(calc.numOne) * Number(calc.numTwo)
+    calculations.push(calc)
+
+  }
+
+  else if (calc.operator === "/") {
+    calc.result = Number(calc.numOne) / Number(calc.numTwo)
+    calculations.push(calc)
+
+  }
+
+
+  else if (calc.operator === "c") {
+
+    calculations = [{
+      numOne: 2,
+      numTwo: 5,
+      operator: "x",
+
+    }];
+
+  }
+
+
+
+  res.sendStatus(201)
+  //all is well 
 
 }
 )

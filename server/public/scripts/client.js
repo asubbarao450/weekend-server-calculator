@@ -1,102 +1,80 @@
 console.log('client.js is sourced!');
+//$(document).ready(onReady);
 
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     getObj()
-// });
+
+//   document.addEventListener("DOMContentLoaded", () => {
+//        getObj()
+//    });
 
 var arithmetic = null;
 
-let add = () => {
+let handleSubmit = (event) => {
+    event.preventDefault()
+    //arithmetic = "+"
+    
+    if(event.target.innerText === '+'){
 
-    arithmetic = "+"
-
-}
-
-let sub = () => {
-    arithmetic = "-"
-
-}
-
-let mult = () => {
-    arithmetic = "*"
-
-}
-
-let divi = () => {
-    arithmetic = "/"
-
-}
-let equals = () => {
-
-
-    //send arithemtic to relavant function (addObj)
-    //reset arithmetic 
-    //clear form 
-    document.querySelector('form').reset()
-}
-
-
-let clear = () => {
-    document.querySelector('form').reset()
-    //might have to call renderObj
-}
-
-
-let getObj = () => {
-    console.log("getObj is working!")
-    axios({
-        method: 'GET', // HTTP method
-        url: '/calculations'
-    })
-        .then((response) => { // Captures the response from server
-            // Must be response.data
-            let calcs = response.data
-            console.log(calcs)
-
-            // Render quotes to DOM
-            renderObj(calcs)
-        })
-        .catch((error) => { // Manages errors
-            console.log("GET for /calculations didnt work...", error)
-            alert("Oopsie, that didnt work.")
-        })
-}
-
-//no axios request here 
-let renderObj = (calcHistory) => {
-
-    console.log(calcHistory)
-    let historyhtml = document.getElementById('resultHistory')
-
-
-
-    // * Will clear list before rendering the individual quotes
-    historyhtml.innerHTML = ""
-
-    for (let i = 0; i < calcHistory.length; i++) {
-
-        if (i != calcHistory.length - 1)
-            history.innerHTML += `<li>${calcHistory[i]}, - ${calcHistory[i]}</li>`
-        else if (i === calcHistory.length - 1) {
-            history.innerHTML += `<li> Current Result: ${calcHistory[i]}, - ${calcHistory[i]}</li>`
-        }
-
+        arithmetic = "+"
     }
+
+    else if(event.target.innerText === '-'){
+
+        arithmetic = "-"
+    }
+
+    else if(event.target.innerText === '*'){
+
+        arithmetic = "*"
+    }
+
+    else if(event.target.innerText === '/'){
+
+        arithmetic = "/"
+    }
+   
+    if(event.target.innerText === '='){
+
+        equals()
+    }
+
+    if(event.target.innerText === 'C'){
+
+        clear()
+    }
+
 }
 
-//post request will save new data to the server and recieve server server response
-let addObj = () => {
+// let sub = (event) => {
+//     event.preventDefault()
+//     // arithmetic = "-"
+//     console.log("subtract")
+// }
+
+// let mult = (event) => {
+//     event.preventDefault()
+//     // arithmetic = "*"
+//     console.log("multiply")
+
+// }
+
+// let divi = (event) => {
+//     console.log("/")
+//     event.preventDefault()
+//     // arithmetic = "/"
+
+// }
+let equals = () => {
 
     let inputField1 = document.getElementById("numOne").value
     let inputField2 = document.getElementById("numTwo").value
-    let inputField3 = document.getElementById("calculator").value
+    
 
     document.querySelector('form').reset()
 
-    // let newww = {
+    
 
-    // }
+    
 
     //server doesn't communicate with index.html. Only the client will 
     axios({
@@ -110,7 +88,8 @@ let addObj = () => {
         data: {
             numOne: inputField1,
             numTwo: inputField2,
-            operator: inputField3,
+            operator: arithmetic,
+            result: -1
 
         }
     })
@@ -128,5 +107,74 @@ let addObj = () => {
         })
 
 
+    //arithmetic = null; 
+    //send arithemtic to relavant function (addObj)
+    //reset arithmetic 
+    //clear form 
+    //document.querySelector('form').reset()
 }
+
+
+let clear = () => {
+
+
+   document.querySelector('form').reset()
+
+   arithmetic = "c"
+
+   equals()
+
+   arithmetic = "+";
+    
+}
+
+
+let getObj = () => {
+    console.log("getObj is working!")
+    axios({
+        method: 'GET', // HTTP method
+        url: '/calculations'
+    })
+        .then((response) => { // Captures the response from server
+            // Must be response.data
+            let calcs = response.data
+            
+
+            // Render quotes to DOM
+            renderObj(calcs)
+        })
+        .catch((error) => { // Manages errors
+            console.log("GET for /calculations didnt work...", error)
+            alert("Oopsie, that didnt work.")
+        })
+}
+
+//no axios request here 
+let renderObj = (calcHistory) => {
+
+    
+    let historyhtml = document.getElementById('resultHistory')
+
+
+
+    // * Will clear list before rendering the individual quotes
+    historyhtml.innerHTML = ""
+
+    for (let i = 0; i < calcHistory.length; i++) {
+
+        if (i != calcHistory.length - 1)
+            historyhtml.innerHTML += `<li> ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}{</li>`
+        else if (i === calcHistory.length - 1) {
+            historyhtml.innerHTML += `<li> Current Result: ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}</li>`
+        }
+
+    }
+}
+
+//post request will save new data to the server and recieve server server response
+// let addObj = () => {
+
+    
+
+// }
 
