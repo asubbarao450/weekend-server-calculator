@@ -122,6 +122,8 @@ let clear = () => {
 
    arithmetic = "c"
 
+   //uses equal function which contains an axios function to send data 
+   //containing arithmetic operator "c" back to server
    equals()
 
    arithmetic = "+";
@@ -163,7 +165,7 @@ let renderObj = (calcHistory) => {
     for (let i = 0; i < calcHistory.length; i++) {
 
         if (i != calcHistory.length - 1)
-            historyhtml.innerHTML += `<li> ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}{</li>`
+            historyhtml.innerHTML += `<li> ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}</li>`
         else if (i === calcHistory.length - 1) {
             historyhtml.innerHTML += `<li> Current Result: ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}</li>`
         }
