@@ -7,14 +7,52 @@ app.use(express.static('server/public'));
 
 // Global variable that will contain all of the
 // calculation objects:
-let calculations = []
+let calculations = [
+  {
+    numOne: 2,
+    numTwo: 5,
+    operator: "x",
+    result: 3
+  }
+]
 
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
 
+app.get('/', (req, res) => {
+
+
+  //sends the index.html file
+  res.sendFile(__dirname + "/public/" + "index.html");
+
+
+}
+)
+
+app.get('/calculations', (req, res) => {
+
+
+  //get sends a file through respond function 
+  res.send(calculations)
+
+
+})
+
+
 // POST /calculations
+
+app.post('/calculations', (req, res) => {
+
+  //since this is post we have to update stuff in the server
+
+  let calc = req.body
+
+  calculations.push(calc)
+
+}
+)
 
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
