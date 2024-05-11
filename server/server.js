@@ -11,7 +11,7 @@ let calculations = [
   {
     numOne: 2,
     numTwo: 5,
-    operator: "x",
+    operator: "*",
     result: 10
   }
 ]
@@ -80,8 +80,8 @@ app.post('/calculations', (req, res) => {
     calculations = [{
       numOne: 2,
       numTwo: 5,
-      operator: "x",
-
+      operator: "*",
+      result: 10,
     }];
 
   }
