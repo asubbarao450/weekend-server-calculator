@@ -9,6 +9,7 @@ console.log('client.js is sourced!');
 
 var arithmetic = null;
 
+//function takes input once a relavant button is clicked
 let handleSubmit = (event) => {
     event.preventDefault()
     //arithmetic = "+"

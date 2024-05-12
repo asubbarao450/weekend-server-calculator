@@ -48,6 +48,7 @@ app.post('/calculations', (req, res) => {
 
 
   if (calc.operator === "+") {
+    //new object parameter result is defined and added to calculations
     calc.result = Number(calc.numOne) + Number(calc.numTwo)
     calculations.push(calc)
 
