@@ -9,10 +9,7 @@ app.use(express.static('server/public'));
 // calculation objects:
 let calculations = [
   {
-    numOne: 2,
-    numTwo: 5,
-    operator: "*",
-    result: 10
+
   }
 ]
 
@@ -78,10 +75,7 @@ app.post('/calculations', (req, res) => {
   else if (calc.operator === "c") {
 
     calculations = [{
-      numOne: 2,
-      numTwo: 5,
-      operator: "*",
-      result: 10,
+
     }];
 
   }

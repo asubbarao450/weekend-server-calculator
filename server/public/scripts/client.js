@@ -89,7 +89,7 @@ let equals = () => {
             numOne: inputField1,
             numTwo: inputField2,
             operator: arithmetic,
-            result: -1
+            result: null
 
         }
     })
@@ -152,22 +152,23 @@ let getObj = () => {
 }
 
 //no axios request here 
+//render function which will 
 let renderObj = (calcHistory) => {
 
     
     let historyhtml = document.getElementById('resultHistory')
 
-
+    let currenthtml = document.getElementById('recentResult')
 
     // * Will clear list before rendering the individual quotes
     historyhtml.innerHTML = ""
-
-    for (let i = 0; i < calcHistory.length; i++) {
+    currenthtml.innerHTML=''
+    for (let i = 1; i < calcHistory.length; i++) {
 
         if (i != calcHistory.length - 1)
             historyhtml.innerHTML += `<li> ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}</li>`
         else if (i === calcHistory.length - 1) {
-            historyhtml.innerHTML += `<li> Current Result: ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}</li>`
+            currenthtml.innerHTML += `<h2>${calcHistory[i].result}</h2>`
         }
 
     }
