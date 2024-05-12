@@ -1,11 +1,11 @@
 console.log('client.js is sourced!');
-//$(document).ready(onReady);
 
 
 
-//   document.addEventListener("DOMContentLoaded", () => {
-//        getObj()
-//    });
+
+   document.addEventListener("DOMContentLoaded", () => {
+        getObj()
+    });
 
 var arithmetic = null;
 
@@ -166,9 +166,9 @@ let renderObj = (calcHistory) => {
     currenthtml.innerHTML=''
     for (let i = 1; i < calcHistory.length; i++) {
 
-        if (i != calcHistory.length - 1)
+        if (i != (calcHistory.length - 1))
             historyhtml.innerHTML += `<li> ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}</li>`
-        else if (i === calcHistory.length - 1) {
+        else if (i === (calcHistory.length - 1)) {
             currenthtml.innerHTML += `<h2>${calcHistory[i].result}</h2>`
         }
 
