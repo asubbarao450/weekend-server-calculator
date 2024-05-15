@@ -164,13 +164,16 @@ let renderObj = (calcHistory) => {
     // * Will clear list before rendering the individual quotes
     historyhtml.innerHTML = ""
     currenthtml.innerHTML=''
+
+    //render most recent result 
+    currenthtml.innerHTML += `<h2>${calcHistory[calcHistory.length-1].result}</h2>`
     for (let i = 1; i < calcHistory.length; i++) {
 
-        if (i != (calcHistory.length - 1))
+        //if (i != (calcHistory.length - 1))
             historyhtml.innerHTML += `<li> ${calcHistory[i].numOne} ${calcHistory[i].operator} ${calcHistory[i].numTwo} = ${calcHistory[i].result}</li>`
-        else if (i === (calcHistory.length - 1)) {
-            currenthtml.innerHTML += `<h2>${calcHistory[i].result}</h2>`
-        }
+        // else if (i === (calcHistory.length - 1)) {
+        //     currenthtml.innerHTML += `<h2>${calcHistory[i].result}</h2>`
+        // }
 
     }
 }
